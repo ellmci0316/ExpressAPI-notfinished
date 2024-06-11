@@ -1,0 +1,23 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Express API UI</title>
+</head>
+<body>
+    <h1>Items</h1>
+    <ul id="items"></ul>
+    <script>
+        fetch('/items')
+            .then(response => response.json())
+            .then(data => {
+                const itemsList = document.getElementById('items');
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = `${item.name}: ${item.description}`;
+                    itemsList.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>
